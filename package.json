@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/aria-home-page/aria-sdk/issues"
   },
-  "homepage": "https://github.com/aria-home-page/aria-sdk#readme"
+  "homepage": "https://github.com/aria-home-page/aria-sdk#readme",
+  "publishConfig": {
+    "@peterwanghot:registry": "https://npm.pkg.github.com"
+  }
 }
