@@ -1,8 +1,8 @@
 {
   "name": "@ariagames/front-sdk",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Aria games front sdk",
+  "main": "lib/index.js",
   "scripts": {
     "test": "exit 0"
   },
@@ -11,12 +11,17 @@
     "url": "git+https://github.com/aria-home-page/aria-sdk.git"
   },
   "author": "Peter Wang",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/aria-home-page/aria-sdk/issues"
   },
   "homepage": "https://github.com/aria-home-page/aria-sdk#readme",
-  "publishConfig": {
-    "@peterwanghot:registry": "https://npm.pkg.github.com"
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
