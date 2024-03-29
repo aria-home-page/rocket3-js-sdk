@@ -193,7 +193,8 @@ var bindSignature = function bindSignature(keyId, signature) {
 
 //discord callback
 var discordCallback = function discordCallback(code, state, error) {
-  return axiosInstance.post('/api/aria/v1/bind/discord', {
+  var callbackUrl = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
+  return axiosInstance.post("/api/aria/v1/bind/discord".concat('?callbackUrl=' + callbackUrl), {
     code: code,
     state: state,
     error: error
@@ -203,7 +204,8 @@ var discordCallback = function discordCallback(code, state, error) {
 };
 //get social media bind url
 var socialMediaAuthorize = function socialMediaAuthorize(type) {
-  return axiosInstance.get("/api/activity/v1/socialMedia/authorize/".concat(type || 'discord')).then(function (ret) {
+  var callbackUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  return axiosInstance.get("/api/activity/v1/socialMedia/authorize/".concat(type || 'discord').concat('?callbackUrl=' + callbackUrl, " ")).then(function (ret) {
     return ret.data;
   });
 };
@@ -211,7 +213,7 @@ var socialMediaAuthorize = function socialMediaAuthorize(type) {
 // social media call back
 var socialMediaCallBack = function socialMediaCallBack(type, oauth_token, oauth_verifier) {
   var callbackUrl = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
-  return axiosInstance.post("/api/activity/v1/socialMedia/call_back/".concat(type, "?").concat(callbackUrl.length > 0 ? 'callbackUrl=' + callbackUrl : ''), {
+  return axiosInstance.post("/api/activity/v1/socialMedia/call_back/".concat(type, "?").concat('callbackUrl=' + callbackUrl, " "), {
     oauth_token: oauth_token,
     oauth_verifier: oauth_verifier
   }).then(function (ret) {
@@ -230,7 +232,7 @@ var getSign = function getSign(taskId) {
 
 // Remove social bind
 var removeBind = function removeBind(type) {
-  return axiosInstance.post("/api/aria/v1/remove/bind/".concat(type), {}).then(function (ret) {
+  return axiosInstance.post("/api/aria/v1/remove/bind/".concat(type, " "), {}).then(function (ret) {
     return ret.data;
   });
 };
