@@ -210,7 +210,8 @@ var socialMediaAuthorize = function socialMediaAuthorize(type) {
 
 // social media call back
 var socialMediaCallBack = function socialMediaCallBack(type, oauth_token, oauth_verifier) {
-  return axiosInstance.post("/api/activity/v1/socialMedia/call_back/".concat(type), {
+  var callbackUrl = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
+  return axiosInstance.post("/api/activity/v1/socialMedia/call_back/".concat(type, "?").concat(callbackUrl.length > 0 ? 'callbackUrl=' + callbackUrl : ''), {
     oauth_token: oauth_token,
     oauth_verifier: oauth_verifier
   }).then(function (ret) {

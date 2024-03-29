@@ -120,18 +120,18 @@ export const bindSignature = (keyId, signature) => {
 }
 
 //discord callback
-export const discordCallback = (code, state, error) => {
-    return axiosInstance.post('/api/aria/v1/bind/discord', { code, state, error }).then(ret => ret.data);
+export const discordCallback = (code, state, error, callbackUrl = "") => {
+    return axiosInstance.post(`/api/aria/v1/bind/discord${callbackUrl.length > 0 ? '?callbackUrl=' + callbackUrl : ''}`, { code, state, error }).then(ret => ret.data);
 }
 //get social media bind url
 export const socialMediaAuthorize = (type) => {
-    return axiosInstance.get(`/api/activity/v1/socialMedia/authorize/${type || 'discord'}`).then(ret => ret.data);
+    return axiosInstance.get(`/ api / activity / v1 / socialMedia / authorize / ${type || 'discord'} `).then(ret => ret.data);
 }
 
 
 // social media call back
-export const socialMediaCallBack = (type, oauth_token, oauth_verifier) => {
-    return axiosInstance.post(`/api/activity/v1/socialMedia/call_back/${type}`, { oauth_token, oauth_verifier }).then(ret => ret.data);
+export const socialMediaCallBack = (type, oauth_token, oauth_verifier, callbackUrl = "") => {
+    return axiosInstance.post(`/ api / activity / v1 / socialMedia / call_back / ${type}?${callbackUrl.length > 0 ? 'callbackUrl=' + callbackUrl : ''} `, { oauth_token, oauth_verifier }).then(ret => ret.data);
 }
 
 // Get sign for web3 wallet connect
@@ -141,7 +141,7 @@ export const getSign = (taskId) => {
 
 // Remove social bind
 export const removeBind = (type) => {
-    return axiosInstance.post(`/api/aria/v1/remove/bind/${type}`, {}).then(ret => ret.data);
+    return axiosInstance.post(`/ api / aria / v1 / remove / bind / ${type} `, {}).then(ret => ret.data);
 }
 
 // Sign notice
@@ -151,5 +151,5 @@ export const signNotice = (taskId, hash) => {
 
 // Query social media authorize info
 export function socialMediaAuthorizeInfo() {
-    return axiosInstance.get(`/api/activity/v1/socialMedia/authorize/info`).then(ret => ret.data)
+    return axiosInstance.get(`/ api / activity / v1 / socialMedia / authorize / info`).then(ret => ret.data)
 }

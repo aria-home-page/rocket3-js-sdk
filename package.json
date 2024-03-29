@@ -1,6 +1,6 @@
 {
   "name": "@peterwanghot/rocket3-js-sdk-test",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Rocket3 labs front sdk",
   "main": "dist/rocket3-js-sdk.min.js",
   "scripts": {
